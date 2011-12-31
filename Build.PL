@@ -7,6 +7,7 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
+    "English" => 0,
     "File::Find" => 0,
     "File::Temp" => 0,
     "HTML::Parser" => "v3.67",
@@ -23,11 +24,11 @@ my %module_build_args = (
   },
   "dist_abstract" => "Interact with eNom, Inc.'s reseller API",
   "dist_author" => [
-    "Simon Cozens <simon at simon-cozens.org>",
-    "Richard Sim\303\265es <rsimoes AT cpan DOT org>"
+    "Richard Sim\303\265es <rsimoes AT cpan DOT org>",
+    "Simon Cozens <simon AT simon-cozens DOT org>"
   ],
   "dist_name" => "WWW-eNom",
-  "dist_version" => "v1.0.2",
+  "dist_version" => "v1.0.3",
   "license" => "lgpl",
   "module_name" => "WWW::eNom",
   "recommends" => {},
@@ -35,11 +36,8 @@ my %module_build_args = (
   "requires" => {
     "Any::Moose" => 0,
     "Carp" => 0,
-    "Data::Validate::Domain" => 0,
-    "English" => 0,
-    "LWP::Simple" => 0,
+    "LWP::UserAgent" => 0,
     "List::MoreUtils" => 0,
-    "Mouse" => "0.97",
     "ParseUtil::Domain" => "2.09",
     "URI" => 0,
     "XML::Simple" => 0,

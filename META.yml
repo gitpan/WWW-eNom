@@ -1,9 +1,10 @@
 ---
 abstract: "Interact with eNom, Inc.'s reseller API"
 author:
-  - 'Simon Cozens <simon at simon-cozens.org>'
   - 'Richard Simões <rsimoes AT cpan DOT org>'
+  - 'Simon Cozens <simon AT simon-cozens DOT org>'
 build_requires:
+  English: 0
   File::Find: 0
   File::Temp: 0
   HTML::Parser: v3.67
@@ -30,11 +31,8 @@ no_index:
 requires:
   Any::Moose: 0
   Carp: 0
-  Data::Validate::Domain: 0
-  English: 0
-  LWP::Simple: 0
+  LWP::UserAgent: 0
   List::MoreUtils: 0
-  Mouse: 0.97
   ParseUtil::Domain: 2.09
   URI: 0
   XML::Simple: 0
@@ -47,4 +45,4 @@ resources:
   bugtracker: https://github.com/rsimoes/www-enom/issues
   homepage: http://search.cpan.org/dist/WWW-eNom
   repository: git://github.com/rsimoes/www-enom.git
-version: v1.0.2
+version: v1.0.3
