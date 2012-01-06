@@ -7,7 +7,6 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "English" => 0,
     "File::Find" => 0,
     "File::Temp" => 0,
     "HTML::Parser" => "v3.67",
@@ -28,24 +27,18 @@ my %module_build_args = (
     "Simon Cozens <simon AT simon-cozens DOT org>"
   ],
   "dist_name" => "WWW-eNom",
-  "dist_version" => "v1.0.3",
+  "dist_version" => "v1.0.4",
   "license" => "lgpl",
   "module_name" => "WWW::eNom",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
     "Any::Moose" => 0,
-    "Carp" => 0,
-    "LWP::UserAgent" => 0,
-    "List::MoreUtils" => 0,
+    "HTTP::Tiny" => 0,
     "ParseUtil::Domain" => "2.09",
     "URI" => 0,
-    "XML::Simple" => 0,
-    "perl" => "5.008",
-    "re" => 0,
-    "strict" => 0,
-    "utf8" => 0,
-    "warnings" => 0
+    "XML::LibXML::Simple" => 0,
+    "perl" => "5.008"
   },
   "script_files" => []
 );

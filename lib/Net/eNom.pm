@@ -7,7 +7,7 @@ use Any::Moose;
 
 extends "WWW::eNom";
 
-our $VERSION = 'v1.0.3'; # VERSION
+our $VERSION = 'v1.0.4'; # VERSION
 # ABSTRACT: Deprecated: namespace retired
 
 1;

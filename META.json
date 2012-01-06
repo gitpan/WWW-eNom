@@ -34,22 +34,15 @@
       "runtime" : {
          "requires" : {
             "Any::Moose" : 0,
-            "Carp" : 0,
-            "LWP::UserAgent" : 0,
-            "List::MoreUtils" : 0,
+            "HTTP::Tiny" : 0,
             "ParseUtil::Domain" : "2.09",
             "URI" : 0,
-            "XML::Simple" : 0,
-            "perl" : "5.008",
-            "re" : 0,
-            "strict" : 0,
-            "utf8" : 0,
-            "warnings" : 0
+            "XML::LibXML::Simple" : 0,
+            "perl" : "5.008"
          }
       },
       "test" : {
          "requires" : {
-            "English" : 0,
             "File::Find" : 0,
             "File::Temp" : 0,
             "HTML::Parser" : "v3.67.0",
@@ -74,6 +67,6 @@
          "web" : "https://github.com/rsimoes/www-enom"
       }
    },
-   "version" : "v1.0.3"
+   "version" : "v1.0.4"
 }
 
