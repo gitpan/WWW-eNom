@@ -3,7 +3,6 @@ package WWW::eNom;
 use strict;
 use warnings;
 use utf8;
-use re "/x";
 use English -no_match_vars;
 use Any::Moose;
 use Any::Moose "::Util::TypeConstraints";
@@ -11,13 +10,13 @@ use Carp qw(croak);
 use ParseUtil::Domain qw(parse_domain);
 use URI;
 
-our $VERSION = 'v1.0.4'; # VERSION
+our $VERSION = 'v1.0.5'; # VERSION
 # ABSTRACT: Interact with eNom, Inc.'s reseller API
 
 with "WWW::eNom::Role::Commands";
 
 # Supported response types:
-my @response_types = qw/xml_simple xml html text/;
+my @response_types = qw(xml_simple xml html text);
 subtype "eNomResponseType"
 	=> as "Str",
 	=> where {
@@ -56,9 +55,9 @@ sub _make_query_string {
 		my $test_domain = $domain;
 
 		# Look for an eNom wildcard TLD:
-		my $wildcard_tld = qr{\.([*12@]+$)};
+		my $wildcard_tld = qr{\.([*12@]+$)}x;
 		my ($subbed_tld) = $test_domain =~ $wildcard_tld;
-		$test_domain =~ s/$wildcard_tld/.com/ if $subbed_tld;
+		$test_domain =~ s/$wildcard_tld/.com/x if $subbed_tld;
 		my $parsed = eval { parse_domain($test_domain) };
 		croak qq[Domain name, "$parsed", does not look like a domain.] if $@;
 

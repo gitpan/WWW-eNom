@@ -7,7 +7,19 @@ use Any::Moose;
 
 extends "WWW::eNom";
 
-our $VERSION = 'v1.0.4'; # VERSION
-# ABSTRACT: Deprecated: namespace retired
+warnings::warnif(
+	deprecated => "This module is deprecated; use WWW::eNom instead."
+);
+
+our $VERSION = 'v1.0.5'; # VERSION
+# ABSTRACT: DEPRECATED: namespace retired
 
 1;
+
+__END__
+
+=head1 NAME
+
+	Net::eNom - DEPRECATED: namespace retired
+
+=cut

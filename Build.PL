@@ -15,7 +15,6 @@ my %module_build_args = (
     "Test::More" => 0,
     "Test::Most" => "0.25",
     "Test::Requires" => 0,
-    "ok" => 0,
     "perl" => "5.006"
   },
   "configure_requires" => {
@@ -27,7 +26,7 @@ my %module_build_args = (
     "Simon Cozens <simon AT simon-cozens DOT org>"
   ],
   "dist_name" => "WWW-eNom",
-  "dist_version" => "v1.0.4",
+  "dist_version" => "v1.0.5",
   "license" => "lgpl",
   "module_name" => "WWW::eNom",
   "recommends" => {},

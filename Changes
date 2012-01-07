@@ -1,5 +1,9 @@
 Revision history for WWW-eNom
 
+v1.0.5    2012-01-06 21:21:20 CST6CDT
+	- Removed "re" pragma option introduced in Perl v5.14
+	- Add deprecation notice to Net::eNom
+
 v1.0.4    2012-01-05 18:12:08 CST6CDT
 	- Fixed failing test due to contact email change on cpan.org whois
 	- Further reduced depedencies

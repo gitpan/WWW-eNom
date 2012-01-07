@@ -5,7 +5,7 @@
       "Simon Cozens <simon AT simon-cozens DOT org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300005, CPAN::Meta::Converter version 2.112621",
+   "generated_by" : "Dist::Zilla version 4.300006, CPAN::Meta::Converter version 2.113640",
    "license" : [
       "lgpl_3_0"
    ],
@@ -50,7 +50,6 @@
             "Test::More" : 0,
             "Test::Most" : "0.25",
             "Test::Requires" : 0,
-            "ok" : 0,
             "perl" : "5.006"
          }
       }
@@ -67,6 +66,6 @@
          "web" : "https://github.com/rsimoes/www-enom"
       }
    },
-   "version" : "v1.0.4"
+   "version" : "v1.0.5"
 }
 
