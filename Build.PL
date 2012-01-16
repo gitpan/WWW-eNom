@@ -26,7 +26,7 @@ my %module_build_args = (
     "Simon Cozens <simon AT simon-cozens DOT org>"
   ],
   "dist_name" => "WWW-eNom",
-  "dist_version" => "v1.0.5",
+  "dist_version" => "v1.0.6",
   "license" => "lgpl",
   "module_name" => "WWW::eNom",
   "recommends" => {},
@@ -34,9 +34,10 @@ my %module_build_args = (
   "requires" => {
     "Any::Moose" => 0,
     "HTTP::Tiny" => 0,
-    "ParseUtil::Domain" => "2.09",
+    "ParseUtil::Domain" => "2.10",
     "URI" => 0,
     "XML::LibXML::Simple" => 0,
+    "base" => 0,
     "perl" => "5.008"
   },
   "script_files" => []

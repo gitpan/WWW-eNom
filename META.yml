@@ -29,12 +29,13 @@ no_index:
 requires:
   Any::Moose: 0
   HTTP::Tiny: 0
-  ParseUtil::Domain: 2.09
+  ParseUtil::Domain: 2.10
   URI: 0
   XML::LibXML::Simple: 0
+  base: 0
   perl: 5.008
 resources:
   bugtracker: https://github.com/rsimoes/www-enom/issues
   homepage: http://search.cpan.org/dist/WWW-eNom
   repository: git://github.com/rsimoes/www-enom.git
-version: v1.0.5
+version: v1.0.6

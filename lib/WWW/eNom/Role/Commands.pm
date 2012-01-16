@@ -8,7 +8,7 @@ use English -no_match_vars;
 use HTTP::Tiny;
 use XML::LibXML::Simple qw(XMLin);
 
-our $VERSION = 'v1.0.5'; # VERSION
+our $VERSION = 'v1.0.6'; # VERSION
 
 requires "_make_query_string";
 

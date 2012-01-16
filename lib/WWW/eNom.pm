@@ -10,7 +10,7 @@ use Carp qw(croak);
 use ParseUtil::Domain qw(parse_domain);
 use URI;
 
-our $VERSION = 'v1.0.5'; # VERSION
+our $VERSION = 'v1.0.6'; # VERSION
 # ABSTRACT: Interact with eNom, Inc.'s reseller API
 
 with "WWW::eNom::Role::Commands";
