@@ -9,7 +9,7 @@ my %module_build_args = (
   "build_requires" => {
     "File::Find" => 0,
     "File::Temp" => 0,
-    "HTML::Parser" => "v3.67",
+    "HTML::Parser" => "v3.67.0",
     "Module::Build" => "0.3601",
     "Moose" => 0,
     "Test::More" => 0,
@@ -22,11 +22,10 @@ my %module_build_args = (
   },
   "dist_abstract" => "Interact with eNom, Inc.'s reseller API",
   "dist_author" => [
-    "Richard Sim\303\265es <rsimoes AT cpan DOT org>",
-    "Simon Cozens <simon AT simon-cozens DOT org>"
+    "Richard Sim\303\265es <rsimoes AT cpan DOT org>"
   ],
   "dist_name" => "WWW-eNom",
-  "dist_version" => "v1.0.6",
+  "dist_version" => "v1.1.0",
   "license" => "lgpl",
   "module_name" => "WWW::eNom",
   "recommends" => {},
@@ -34,10 +33,9 @@ my %module_build_args = (
   "requires" => {
     "Any::Moose" => 0,
     "HTTP::Tiny" => 0,
-    "ParseUtil::Domain" => "2.10",
+    "Mozilla::PublicSuffix" => 0,
     "URI" => 0,
     "XML::LibXML::Simple" => 0,
-    "base" => 0,
     "perl" => "5.008"
   },
   "script_files" => []

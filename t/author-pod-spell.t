@@ -39,7 +39,6 @@ xml
 Richard
 Sim
 es
-Simon
 lib
 Net
 WWW

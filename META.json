@@ -1,11 +1,10 @@
 {
    "abstract" : "Interact with eNom, Inc.'s reseller API",
    "author" : [
-      "Richard Sim\u00c3\u00b5es <rsimoes AT cpan DOT org>",
-      "Simon Cozens <simon AT simon-cozens DOT org>"
+      "Richard Sim\u00c3\u00b5es <rsimoes AT cpan DOT org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300006, CPAN::Meta::Converter version 2.113640",
+   "generated_by" : "Dist::Zilla version 4.300009, CPAN::Meta::Converter version 2.120630",
    "license" : [
       "lgpl_3_0"
    ],
@@ -33,24 +32,23 @@
       },
       "runtime" : {
          "requires" : {
-            "Any::Moose" : 0,
-            "HTTP::Tiny" : 0,
-            "ParseUtil::Domain" : "2.10",
-            "URI" : 0,
-            "XML::LibXML::Simple" : 0,
-            "base" : 0,
+            "Any::Moose" : "0",
+            "HTTP::Tiny" : "0",
+            "Mozilla::PublicSuffix" : "0",
+            "URI" : "0",
+            "XML::LibXML::Simple" : "0",
             "perl" : "5.008"
          }
       },
       "test" : {
          "requires" : {
-            "File::Find" : 0,
-            "File::Temp" : 0,
+            "File::Find" : "0",
+            "File::Temp" : "0",
             "HTML::Parser" : "v3.67.0",
-            "Moose" : 0,
-            "Test::More" : 0,
+            "Moose" : "0",
+            "Test::More" : "0",
             "Test::Most" : "0.25",
-            "Test::Requires" : 0,
+            "Test::Requires" : "0",
             "perl" : "5.006"
          }
       }
@@ -67,6 +65,6 @@
          "web" : "https://github.com/rsimoes/www-enom"
       }
    },
-   "version" : "v1.0.6"
+   "version" : "v1.1.0"
 }
 
