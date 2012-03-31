@@ -9,7 +9,7 @@ use Carp ();
 use Mozilla::PublicSuffix "public_suffix";
 use URI;
 
-our $VERSION = 'v1.1.0'; # VERSION
+our $VERSION = 'v1.1.1'; # VERSION
 # ABSTRACT: Interact with eNom, Inc.'s reseller API
 
 with "WWW::eNom::Role::Commands";

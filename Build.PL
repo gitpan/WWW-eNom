@@ -25,7 +25,7 @@ my %module_build_args = (
     "Richard Sim\303\265es <rsimoes AT cpan DOT org>"
   ],
   "dist_name" => "WWW-eNom",
-  "dist_version" => "v1.1.0",
+  "dist_version" => "v1.1.1",
   "license" => "lgpl",
   "module_name" => "WWW::eNom",
   "recommends" => {},
