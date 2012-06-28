@@ -9,7 +9,7 @@ use Carp ();
 use Mozilla::PublicSuffix "public_suffix";
 use URI;
 
-our $VERSION = 'v1.1.1'; # VERSION
+our $VERSION = 'v1.1.2'; # VERSION
 # ABSTRACT: Interact with eNom, Inc.'s reseller API
 
 with "WWW::eNom::Role::Commands";
@@ -17,75 +17,72 @@ with "WWW::eNom::Role::Commands";
 # Supported response types:
 my @response_types = qw(xml_simple xml html text);
 subtype "eNomResponseType"
-	=> as "Str",
-	=> where {
-		my $type = $_;
-		{ $type eq $_ and return 1 for @response_types; 0 } },
-	=> message {
-		 "response_type must be one of: " . join ", ", @response_types };
+    => as "Str",
+    => where {
+        my $type = $_;
+        { $type eq $_ and return 1 for @response_types; 0 } },
+    => message {
+         "response_type must be one of: " . join ", ", @response_types };
 
 has username => (
-	isa      => "Str",
-	is       => "ro",
-	required => 1 );
+    isa      => "Str",
+    is       => "ro",
+    required => 1 );
 has password => (
-	isa      => "Str",
-	is       => "ro",
-	required => 1 );
+    isa      => "Str",
+    is       => "ro",
+    required => 1 );
 has test => (
-	isa     => "Bool",
-	is      => "ro",
-	default => 0 );
+    isa     => "Bool",
+    is      => "ro",
+    default => 0 );
 has response_type => (
-	isa     => "eNomResponseType",
-	is      => "ro",
-	default => "xml_simple" );
+    isa     => "eNomResponseType",
+    is      => "ro",
+    default => "xml_simple" );
 has _uri => (
-	isa     => "URI",
-	is      => "ro",
-	lazy    => 1,
-	default => \&_default__uri );
+    isa     => "URI",
+    is      => "ro",
+    lazy    => 1,
+    default => \&_default__uri );
 
 sub _make_query_string {
-	my ( $self, $command, %opts ) = @_;
-	my $uri = $self->_uri;
-	( $command ne "CertGetApproverEmail" && exists $opts{Domain} ) and do {
-		my $domain = delete $opts{Domain};
-		# Look for an eNom wildcard TLD:
-		my $wildcard_tld = qr{\.([*12@]+$)}x;
-		my ($subbed_tld) = $domain =~ $wildcard_tld
-			and $domain =~ s/$wildcard_tld/.com/x;
-		my $suffix = eval { public_suffix($domain) };
-		Carp::croak("Domain name, $domain, does not look like a valid domain.")
-			if not $suffix;
+    my ( $self, $command, %opts ) = @_;
+    my $uri = $self->_uri;
+    ( $command ne "CertGetApproverEmail" && exists $opts{Domain} ) and do {
+        my $domain = delete $opts{Domain};
+        # Look for an eNom wildcard TLD:
+        my $wildcard_tld = qr{\.([*12@]+$)}x;
+        my ($subbed_tld) = $domain =~ $wildcard_tld
+            and $domain =~ s/$wildcard_tld/.com/x;
+        my $suffix = eval { public_suffix($domain) };
+        Carp::croak("Domain name, $domain, does not look like a valid domain.")
+            if not $suffix;
 
-		# Finally, add in the neccesary API arguments:
-		my ($sld) = $domain =~ /(.+)\.$suffix/x;
-		$suffix = $subbed_tld if $subbed_tld;
-		@opts{qw(SLD TLD)} = ($sld, $suffix); };
+        # Finally, add in the neccesary API arguments:
+        my ($sld) = $domain =~ /(.+)\.$suffix/x;
+        $suffix = $subbed_tld if $subbed_tld;
+        @opts{qw(SLD TLD)} = ($sld, $suffix); };
 
-	my $response_type = $self->response_type;
-	$response_type = "xml" if $response_type eq "xml_simple";
-	$uri->query_form(
-		command      => $command,
-		uid          => $self->username,
-		pw           => $self->password,
-		responseType => $response_type,
-		%opts );
-	return $uri; }
+    my $response_type = $self->response_type;
+    $response_type = "xml" if $response_type eq "xml_simple";
+    $uri->query_form(
+        command      => $command,
+        uid          => $self->username,
+        pw           => $self->password,
+        responseType => $response_type,
+        %opts );
+    return $uri; }
 
 sub _default__uri {
-	my ($self) = @_;
-	my $test = "http://resellertest.enom.com/interface.asp";
-	my $live = "http://reseller.enom.com/interface.asp";
-	return URI->new( $self->test ? $test : $live ) }
+    my ($self) = @_;
+    my $test = "http://resellertest.enom.com/interface.asp";
+    my $live = "http://reseller.enom.com/interface.asp";
+    return URI->new( $self->test ? $test : $live ) }
 
 __PACKAGE__->meta->make_immutable;
 
 1;
-
-__END__
-
 =encoding utf8
 
 =head1 NAME
@@ -94,23 +91,19 @@ WWW::eNom - Interact with eNom, Inc.'s reseller API
 
 =head1 SYNOPSIS
 
-	use strict;
-	use warnings;
-	use WWW::eNom;
+    use WWW::eNom;
 
-	my $enom = WWW::eNom->new(
-		username      => "resellid",
-		password      => "resellpw",
-		response_type => "xml_simple",
-		test          => 1
-	);
-	$enom->AddToCart(
-		EndUserIP => "1.2.3.4",
-		ProductType => "Register",
-		SLD => "myspiffynewdomain",
-		TLD => "com"
-	);
-	...
+    my $enom = WWW::eNom->new(
+        username      => "resellid",
+        password      => "resellpw",
+        response_type => "xml_simple",
+        test          => 1 );
+    $enom->AddToCart(
+        EndUserIP => "1.2.3.4",
+        ProductType => "Register",
+        SLD => "myspiffynewdomain",
+        TLD => "com" );
+    ...
 
 =head1 METHODS
 
@@ -137,13 +130,12 @@ the return of string responses straight from the eNom API. These options are:
 
 =head2 AddBulkDomains (and many others)
 
-	my $response = $enom->AddBulkDomains(
-		ProductType => "register",
-		ListCount   => 1,
-		SLD1        => "myspiffynewdomain",
-		TLD1        => "com",
-		UseCart     => 1
-	);
+    my $response = $enom->AddBulkDomains(
+        ProductType => "register",
+        ListCount   => 1,
+        SLD1        => "myspiffynewdomain",
+        TLD1        => "com",
+        UseCart     => 1 );
 
 Performs the specified command - see the eNom API users guide
 (https://www.enom.com/resellers/APICommandCatalogEnom.pdf) for the commands
@@ -152,11 +144,11 @@ and their arguments.
 For convenience, if you pass the "Domain" argument, it will be split
 into "SLD" and "TLD"; that is, you can say
 
-	my $response = $enom->Check( SLD => "myspiffynewdomain", TLD => "com" );
+    my $response = $enom->Check( SLD => "myspiffynewdomain", TLD => "com" );
 
 or
 
-	my $response = $enom->Check( Domain => "myspiffynewdomain.com" );
+    my $response = $enom->Check( Domain => "myspiffynewdomain.com" );
 
 The default return value is a Perl hash (via L<XML::Simple>) representing the
 response XML from the eNom API; the only differences are
@@ -180,16 +172,13 @@ Keys which end with a number are transformed into an array
 So for instance, a command C<Check( Domain => "enom.@" )> (the "@" means
 "com, net, org") might return:
 
-	{
-		Domain  => [ qw(enom.com enom.net enom.org) ],
-		Command => "CHECK",
-		RRPCode => [ qw(211 211 211) ],
-		RRPText => [
-			"Domain not available",
-			"Domain not available",
-			"Domain not available"
-		]
-	};
+    { Domain  => [ qw(enom.com enom.net enom.org) ],
+      Command => "CHECK",
+      RRPCode => [ qw(211 211 211) ],
+      RRPText => [
+          "Domain not available",
+          "Domain not available",
+          "Domain not available" ] }
 
 You will need to read the API guide to check whether to expect responses
 in "RRPText" or "responses"; it's not exactly consistent.
@@ -208,6 +197,5 @@ Original version by Simon Cozens.
 =head1 COPYRIGHT & LICENSE
 
 Copyright © 2012 Richard Simões. This module is released under the terms of the
-L<GNU Lesser General Public License v. 3.0|http://gnu.org/licenses/lgpl.html>
-and may be modified and/or redistributed under the same or any compatible
-license.
+B<MIT License> and may be modified and/or redistributed under the same or any
+compatible license.

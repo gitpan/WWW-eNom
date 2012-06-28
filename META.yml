@@ -8,15 +8,15 @@ build_requires:
   HTML::Parser: v3.67.0
   Module::Build: 0.3601
   Moose: 0
+  Test::Deep: 0
+  Test::Exception: 0
   Test::More: 0
-  Test::Most: 0.25
-  Test::Requires: 0
-  perl: 5.006
+  Test::Warn: 0
 configure_requires:
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300010, CPAN::Meta::Converter version 2.120630'
-license: lgpl
+generated_by: 'Dist::Zilla version 4.300020, CPAN::Meta::Converter version 2.120921'
+license: mit
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
@@ -36,4 +36,4 @@ resources:
   bugtracker: https://github.com/rsimoes/www-enom/issues
   homepage: http://search.cpan.org/dist/WWW-eNom
   repository: git://github.com/rsimoes/www-enom.git
-version: v1.1.1
+version: v1.1.2

@@ -12,10 +12,10 @@ my %module_build_args = (
     "HTML::Parser" => "v3.67.0",
     "Module::Build" => "0.3601",
     "Moose" => 0,
+    "Test::Deep" => 0,
+    "Test::Exception" => 0,
     "Test::More" => 0,
-    "Test::Most" => "0.25",
-    "Test::Requires" => 0,
-    "perl" => "5.006"
+    "Test::Warn" => 0
   },
   "configure_requires" => {
     "Module::Build" => "0.3601"
@@ -25,8 +25,8 @@ my %module_build_args = (
     "Richard Sim\303\265es <rsimoes AT cpan DOT org>"
   ],
   "dist_name" => "WWW-eNom",
-  "dist_version" => "v1.1.1",
-  "license" => "lgpl",
+  "dist_version" => "v1.1.2",
+  "license" => "mit",
   "module_name" => "WWW::eNom",
   "recommends" => {},
   "recursive_test_files" => 1,
