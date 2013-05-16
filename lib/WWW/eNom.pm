@@ -5,11 +5,11 @@ use warnings;
 use utf8;
 use Any::Moose;
 use Any::Moose "::Util::TypeConstraints";
-use Carp ();
+use Carp;
 use Mozilla::PublicSuffix "public_suffix";
 use URI;
 
-our $VERSION = 'v1.1.2'; # VERSION
+our $VERSION = 'v1.1.3'; # VERSION
 # ABSTRACT: Interact with eNom, Inc.'s reseller API
 
 with "WWW::eNom::Role::Commands";
@@ -27,42 +27,47 @@ subtype "eNomResponseType"
 has username => (
     isa      => "Str",
     is       => "ro",
-    required => 1 );
+    required => 1
+);
 has password => (
     isa      => "Str",
     is       => "ro",
-    required => 1 );
+    required => 1
+);
 has test => (
     isa     => "Bool",
     is      => "ro",
-    default => 0 );
+    default => 0
+);
 has response_type => (
     isa     => "eNomResponseType",
     is      => "ro",
-    default => "xml_simple" );
+    default => "xml_simple"
+);
 has _uri => (
     isa     => "URI",
     is      => "ro",
     lazy    => 1,
-    default => \&_default__uri );
+    default => \&_default__uri
+);
 
 sub _make_query_string {
-    my ( $self, $command, %opts ) = @_;
+    my ($self, $command, %opts) = @_;
     my $uri = $self->_uri;
-    ( $command ne "CertGetApproverEmail" && exists $opts{Domain} ) and do {
+    if ( $command ne "CertGetApproverEmail" && exists $opts{Domain} ) {
         my $domain = delete $opts{Domain};
         # Look for an eNom wildcard TLD:
-        my $wildcard_tld = qr{\.([*12@]+$)}x;
+        my $wildcard_tld = qr{\.([*12@]+)$}x;
         my ($subbed_tld) = $domain =~ $wildcard_tld
             and $domain =~ s/$wildcard_tld/.com/x;
-        my $suffix = eval { public_suffix($domain) };
-        Carp::croak("Domain name, $domain, does not look like a valid domain.")
-            if not $suffix;
+        my $suffix = eval { public_suffix($domain) }
+            or croak "Domain name, $domain, does not look like a valid domain.";
+
 
         # Finally, add in the neccesary API arguments:
-        my ($sld) = $domain =~ /(.+)\.$suffix/x;
+        my ($sld) = $domain =~ /^(.+)\.$suffix$/x;
         $suffix = $subbed_tld if $subbed_tld;
-        @opts{qw(SLD TLD)} = ($sld, $suffix); };
+        @opts{qw(SLD TLD)} = ($sld, $suffix) }
 
     my $response_type = $self->response_type;
     $response_type = "xml" if $response_type eq "xml_simple";
@@ -71,14 +76,17 @@ sub _make_query_string {
         uid          => $self->username,
         pw           => $self->password,
         responseType => $response_type,
-        %opts );
-    return $uri; }
+        %opts
+    );
+    return $uri;
+}
 
 sub _default__uri {
     my ($self) = @_;
     my $test = "http://resellertest.enom.com/interface.asp";
     my $live = "http://reseller.enom.com/interface.asp";
-    return URI->new( $self->test ? $test : $live ) }
+    return URI->new( $self->test ? $test : $live );
+}
 
 __PACKAGE__->meta->make_immutable;
 

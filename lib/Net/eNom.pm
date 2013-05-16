@@ -10,7 +10,7 @@ extends "WWW::eNom";
 warnings::warnif(
     deprecated => "This module is deprecated; use WWW::eNom instead." );
 
-our $VERSION = 'v1.1.2'; # VERSION
+our $VERSION = 'v1.1.3'; # VERSION
 # ABSTRACT: DEPRECATED: namespace retired
 
 1;
