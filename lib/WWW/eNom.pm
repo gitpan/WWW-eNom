@@ -3,52 +3,61 @@ package WWW::eNom;
 use strict;
 use warnings;
 use utf8;
-use Any::Moose;
-use Any::Moose "::Util::TypeConstraints";
-use Carp;
-use Mozilla::PublicSuffix "public_suffix";
+use Moo;
+use Type::Utils qw(class_type subtype as where message);
+use Types::Standard qw(Bool Str);
+use Carp qw(croak);
+use Mozilla::PublicSuffix qw(public_suffix);
 use URI;
 
-our $VERSION = 'v1.1.3'; # VERSION
+our $VERSION = 'v1.2.0'; # TRIAL VERSION
 # ABSTRACT: Interact with eNom, Inc.'s reseller API
 
-with "WWW::eNom::Role::Commands";
+with 'WWW::eNom::Role::Commands';
 
 # Supported response types:
 my @response_types = qw(xml_simple xml html text);
-subtype "eNomResponseType"
-    => as "Str",
-    => where {
+
+my $URIObject = class_type({ class => 'URI' })->plus_coercions(
+    Str, sub { URI->new($_) }
+);
+
+my $eNomResponseType = subtype as Str,
+    where {
         my $type = $_;
-        { $type eq $_ and return 1 for @response_types; 0 } },
-    => message {
-         "response_type must be one of: " . join ", ", @response_types };
+        { $type eq $_ and return 1 for @response_types; 0 }
+    },
+    message {
+         'response_type must be one of: ' . join ', ', @response_types
+    }
+;
 
 has username => (
-    isa      => "Str",
-    is       => "ro",
+    isa      => Str,
+    is       => 'ro',
     required => 1
 );
 has password => (
-    isa      => "Str",
-    is       => "ro",
+    isa      => Str,
+    is       => 'ro',
     required => 1
 );
 has test => (
-    isa     => "Bool",
-    is      => "ro",
+    isa     => Bool,
+    is      => 'ro',
     default => 0
 );
 has response_type => (
-    isa     => "eNomResponseType",
-    is      => "ro",
-    default => "xml_simple"
+    isa     => $eNomResponseType,
+    is      => 'ro',
+    default => 'xml_simple'
 );
 has _uri => (
-    isa     => "URI",
-    is      => "ro",
+    isa     => $URIObject,
+    is      => 'ro',
+    coerce  => $URIObject->coercion,
     lazy    => 1,
-    default => \&_default__uri
+    default => \&_default__uri,
 );
 
 sub _make_query_string {
@@ -67,10 +76,11 @@ sub _make_query_string {
         # Finally, add in the neccesary API arguments:
         my ($sld) = $domain =~ /^(.+)\.$suffix$/x;
         $suffix = $subbed_tld if $subbed_tld;
-        @opts{qw(SLD TLD)} = ($sld, $suffix) }
+        @opts{qw(SLD TLD)} = ($sld, $suffix);
+    }
 
     my $response_type = $self->response_type;
-    $response_type = "xml" if $response_type eq "xml_simple";
+    $response_type = 'xml' if $response_type eq 'xml_simple';
     $uri->query_form(
         command      => $command,
         uid          => $self->username,
@@ -87,8 +97,6 @@ sub _default__uri {
     my $live = "http://reseller.enom.com/interface.asp";
     return URI->new( $self->test ? $test : $live );
 }
-
-__PACKAGE__->meta->make_immutable;
 
 1;
 =encoding utf8
@@ -126,6 +134,8 @@ of backward compatibility, the default is "xml_simple"; see below for an
 explanation of this response type. Use of any other valid option will lead to
 the return of string responses straight from the eNom API. These options are:
 
+=for Pod::Coverage username password response_type test
+
 =over
 
 =item * xml
@@ -145,8 +155,8 @@ the return of string responses straight from the eNom API. These options are:
         TLD1        => "com",
         UseCart     => 1 );
 
-Performs the specified command - see the eNom API users guide
-(https://www.enom.com/resellers/APICommandCatalogEnom.pdf) for the commands
+Performs the specified command - see the
+L<eNom API users guide|http://www.enom.com/APICommandCatalog/> for the commands
 and their arguments.
 
 For convenience, if you pass the "Domain" argument, it will be split
@@ -178,15 +188,18 @@ Keys which end with a number are transformed into an array
 =back
 
 So for instance, a command C<Check( Domain => "enom.@" )> (the "@" means
-"com, net, org") might return:
+"com, net, org, biz, us") might return:
 
-    { Domain  => [ qw(enom.com enom.net enom.org) ],
-      Command => "CHECK",
-      RRPCode => [ qw(211 211 211) ],
-      RRPText => [
-          "Domain not available",
-          "Domain not available",
-          "Domain not available" ] }
+    {
+        Domain  => [qw(enom.com enom.net enom.org)],
+        Command => "CHECK",
+        RRPCode => [qw(211 211 211)],
+        RRPText => [
+            "Domain not available",
+            "Domain not available",
+            "Domain not available"
+        ]
+    }
 
 You will need to read the API guide to check whether to expect responses
 in "RRPText" or "responses"; it's not exactly consistent.
@@ -204,6 +217,6 @@ Original version by Simon Cozens.
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright © 2012 Richard Simões. This module is released under the terms of the
+Copyright © 2013 Richard Simões. This module is released under the terms of the
 B<MIT License> and may be modified and/or redistributed under the same or any
 compatible license.

@@ -17,15 +17,17 @@ my %module_build_args = (
     "Richard Sim\303\265es <rsimoes AT cpan DOT org>"
   ],
   "dist_name" => "WWW-eNom",
-  "dist_version" => "v1.1.3",
+  "dist_version" => "v1.2.0",
   "license" => "mit",
   "module_name" => "WWW::eNom",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
-    "Any::Moose" => 0,
     "HTTP::Tiny" => 0,
+    "Moo" => 0,
     "Mozilla::PublicSuffix" => 0,
+    "Type::Utils" => 0,
+    "Types::Standard" => 0,
     "URI" => 0,
     "XML::LibXML::Simple" => 0,
     "perl" => "5.008"
@@ -35,7 +37,6 @@ my %module_build_args = (
     "File::Find" => 0,
     "File::Temp" => 0,
     "HTML::Parser" => "v3.67.0",
-    "Moose" => 0,
     "Test::Deep" => 0,
     "Test::Exception" => 0,
     "Test::More" => 0,
