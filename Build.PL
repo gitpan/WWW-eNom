@@ -17,12 +17,13 @@ my %module_build_args = (
     "Richard Sim\303\265es <rsimoes AT cpan DOT org>"
   ],
   "dist_name" => "WWW-eNom",
-  "dist_version" => "v1.2.0",
+  "dist_version" => "v1.2.1",
   "license" => "mit",
   "module_name" => "WWW::eNom",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
+    "Class::Method::Modifiers" => 0,
     "HTTP::Tiny" => 0,
     "Moo" => 0,
     "Mozilla::PublicSuffix" => 0,
@@ -34,9 +35,11 @@ my %module_build_args = (
   },
   "script_files" => [],
   "test_requires" => {
-    "File::Find" => 0,
-    "File::Temp" => 0,
+    "File::Spec" => 0,
     "HTML::Parser" => "v3.67.0",
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
+    "Moose" => 0,
     "Test::Deep" => 0,
     "Test::Exception" => 0,
     "Test::More" => 0,
