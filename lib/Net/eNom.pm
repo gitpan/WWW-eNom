@@ -11,7 +11,7 @@ warnings::warnif(
     deprecated => 'This module is deprecated; use WWW::eNom instead.'
 );
 
-our $VERSION = 'v1.2.1'; # TRIAL VERSION
+our $VERSION = 'v1.2.2'; # VERSION
 # ABSTRACT: DEPRECATED: namespace retired
 
 1;

@@ -31,6 +31,7 @@ requires:
   HTTP::Tiny: 0
   Moo: 0
   Mozilla::PublicSuffix: 0
+  Type::Tiny: 0.024
   Type::Utils: 0
   Types::Standard: 0
   URI: 0
@@ -40,4 +41,4 @@ resources:
   bugtracker: https://github.com/rsimoes/www-enom/issues
   homepage: https://metacpan.org/release/WWW-eNom
   repository: git://github.com/rsimoes/www-enom.git
-version: v1.2.1
+version: v1.2.2
