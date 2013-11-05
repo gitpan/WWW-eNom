@@ -25,17 +25,21 @@ no_index:
   namespace:
     - Net::eNom
     - WWW::eNom::Role::Commands
+provides:
+  WWW::eNom:
+    file: lib/WWW/eNom.pm
+    version: v1.2.5
 requires:
   Class::Method::Modifiers: 2.04
-  HTTP::Tiny: 0
-  Moo: 1.000007
-  Mozilla::PublicSuffix: 0
-  Type::Tiny: 0.024
-  URI: 0
-  XML::LibXML::Simple: 0
+  HTTP::Tiny: 0.031
+  Moo: 1.001000
+  Mozilla::PublicSuffix: v0.1.16
+  Type::Tiny: 0.032
+  URI: 1.60
+  XML::LibXML::Simple: 0.91
   perl: 5.008
 resources:
   bugtracker: https://github.com/rsimoes/www-enom/issues
   homepage: https://metacpan.org/release/WWW-eNom
   repository: git://github.com/rsimoes/www-enom.git
-version: v1.2.4
+version: v1.2.5

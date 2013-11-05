@@ -3,14 +3,15 @@ package WWW::eNom;
 use strict;
 use warnings;
 use utf8;
-use Moo 1.000007;
+use Moo 1.001000;
+use Type::Tiny 0.032 ();
 use Type::Utils qw(class_type subtype as where message);
 use Types::Standard qw(Bool Str);
 use Carp qw(croak);
-use Mozilla::PublicSuffix qw(public_suffix);
-use URI;
+use Mozilla::PublicSuffix v0.1.16 qw(public_suffix);
+use URI 1.60;
 
-our $VERSION = 'v1.2.4'; # VERSION
+our $VERSION = 'v1.2.5'; # VERSION
 # ABSTRACT: Interact with eNom, Inc.'s reseller API
 
 with 'WWW::eNom::Role::Commands';
@@ -80,8 +81,10 @@ sub _make_query_string {
         @opts{qw(SLD TLD)} = ($sld, $suffix);
     }
 
-    my $response_type = $self->response_type;
-    $response_type = 'xml' if $response_type eq 'xml_simple';
+    my $response_type = $self->response_type eq 'xml_simple'
+        ? 'xml'
+        : $self->response_type;
+
     $uri->query_form(
         command      => $command,
         uid          => $self->username,
@@ -89,6 +92,7 @@ sub _make_query_string {
         responseType => $response_type,
         %opts
     );
+
     return $uri;
 }
 
