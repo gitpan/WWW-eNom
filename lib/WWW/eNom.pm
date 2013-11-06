@@ -8,10 +8,10 @@ use Type::Tiny 0.032 ();
 use Type::Utils qw(class_type subtype as where message);
 use Types::Standard qw(Bool Str);
 use Carp qw(croak);
-use Mozilla::PublicSuffix v0.1.16 qw(public_suffix);
+use Mozilla::PublicSuffix 0.001016 qw(public_suffix);
 use URI 1.60;
 
-our $VERSION = 'v1.2.5'; # VERSION
+our $VERSION = 'v1.2.6'; # VERSION
 # ABSTRACT: Interact with eNom, Inc.'s reseller API
 
 with 'WWW::eNom::Role::Commands';

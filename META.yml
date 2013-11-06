@@ -28,12 +28,12 @@ no_index:
 provides:
   WWW::eNom:
     file: lib/WWW/eNom.pm
-    version: v1.2.5
+    version: v1.2.6
 requires:
   Class::Method::Modifiers: 2.04
   HTTP::Tiny: 0.031
   Moo: 1.001000
-  Mozilla::PublicSuffix: v0.1.16
+  Mozilla::PublicSuffix: 0.001016
   Type::Tiny: 0.032
   URI: 1.60
   XML::LibXML::Simple: 0.91
@@ -42,4 +42,4 @@ resources:
   bugtracker: https://github.com/rsimoes/www-enom/issues
   homepage: https://metacpan.org/release/WWW-eNom
   repository: git://github.com/rsimoes/www-enom.git
-version: v1.2.5
+version: v1.2.6
