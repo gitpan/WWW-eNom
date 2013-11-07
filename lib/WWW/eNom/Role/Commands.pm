@@ -9,7 +9,7 @@ use Class::Method::Modifiers 2.04 qw(fresh);
 use HTTP::Tiny 0.031;
 use XML::LibXML::Simple 0.91 qw(XMLin);
 
-our $VERSION = 'v1.2.6'; # VERSION
+our $VERSION = 'v1.2.7'; # VERSION
 
 requires "_make_query_string";
 
