@@ -17,7 +17,7 @@ my %module_build_args = (
     "Richard Sim\x{f5}es <rsimoes AT cpan DOT org>"
   ],
   "dist_name" => "WWW-eNom",
-  "dist_version" => "v1.2.7",
+  "dist_version" => "v1.2.8",
   "license" => "mit",
   "module_name" => "WWW::eNom",
   "recommends" => {},

@@ -11,7 +11,7 @@ use Carp qw(croak);
 use Mozilla::PublicSuffix qw(public_suffix);
 use URI 1.60;
 
-our $VERSION = 'v1.2.7'; # VERSION
+our $VERSION = 'v1.2.8'; # VERSION
 # ABSTRACT: Interact with eNom, Inc.'s reseller API
 
 with 'WWW::eNom::Role::Commands';
@@ -118,12 +118,16 @@ WWW::eNom - Interact with eNom, Inc.'s reseller API
         username      => "resellid",
         password      => "resellpw",
         response_type => "xml_simple",
-        test          => 1 );
+        test          => 1
+    );
+
     $enom->AddToCart(
         EndUserIP => "1.2.3.4",
         ProductType => "Register",
         SLD => "myspiffynewdomain",
-        TLD => "com" );
+        TLD => "com"
+    );
+
     ...
 
 =head1 METHODS
@@ -158,7 +162,8 @@ the return of string responses straight from the eNom API. These options are:
         ListCount   => 1,
         SLD1        => "myspiffynewdomain",
         TLD1        => "com",
-        UseCart     => 1 );
+        UseCart     => 1
+    );
 
 Performs the specified command - see the
 L<eNom API users guide|http://www.enom.com/APICommandCatalog/> for the commands
@@ -193,13 +198,15 @@ Keys which end with a number are transformed into an array
 =back
 
 So for instance, a command C<Check( Domain => "enom.@" )> (the "@" means
-"com, net, org, biz, us") might return:
+"com, net, org, biz, info") might return:
 
     {
-        Domain  => [qw(enom.com enom.net enom.org)],
+        Domain  => [qw(enom.com enom.net enom.org enom.biz enom.info)],
         Command => "CHECK",
-        RRPCode => [qw(211 211 211)],
+        RRPCode => [qw(211 211 211 211 211)],
         RRPText => [
+            "Domain not available",
+            "Domain not available",
             "Domain not available",
             "Domain not available",
             "Domain not available"
