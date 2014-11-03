@@ -11,7 +11,7 @@ use Carp qw(croak);
 use Mozilla::PublicSuffix qw(public_suffix);
 use URI 1.60;
 
-our $VERSION = 'v1.2.8'; # VERSION
+our $VERSION = 'v1.2.9'; # VERSION
 # ABSTRACT: Interact with eNom, Inc.'s reseller API
 
 with 'WWW::eNom::Role::Commands';

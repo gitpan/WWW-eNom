@@ -7,15 +7,17 @@ build_requires:
   HTML::Parser: v3.67.0
   IO::Handle: 0
   IPC::Open3: 0
-  Module::Build: 0.3601
+  Module::Build: 0.28
   Test::Deep: 0
   Test::Exception: 0
   Test::More: 0
   Test::Warn: 0
+  perl: 5.008
 configure_requires:
-  Module::Build: 0.3601
+  Module::Build: 0.28
+  perl: 5.008
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.006, CPAN::Meta::Converter version 2.132830'
+generated_by: 'Dist::Zilla version 5.023, CPAN::Meta::Converter version 2.142060'
 license: mit
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -28,7 +30,7 @@ no_index:
 provides:
   WWW::eNom:
     file: lib/WWW/eNom.pm
-    version: v1.2.8
+    version: v1.2.9
 requires:
   Class::Method::Modifiers: 2.04
   HTTP::Tiny: 0.031
@@ -42,4 +44,4 @@ resources:
   bugtracker: https://github.com/rsimoes/www-enom/issues
   homepage: https://metacpan.org/release/WWW-eNom
   repository: git://github.com/rsimoes/www-enom.git
-version: v1.2.8
+version: v1.2.9
